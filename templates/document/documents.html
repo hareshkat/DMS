@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+
+{% load i18n static django_bootstrap_breadcrumbs ajax_table %}
+
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Document" "documents" %}
+{% endblock %}
+
+{% block content %}
+  {% render_breadcrumbs %}
+  <div class="px-4">
+    {% ajax_table "documents_simple_table" "documents_list" %}
+  </div>
+
+{% endblock %}

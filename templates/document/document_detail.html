@@ -1,0 +1,66 @@
+{% extends "main/base.html" %}
+
+{% load i18n static django_bootstrap_breadcrumbs admin_tags %}
+
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Document" "documents" %}
+      {% breadcrumb_for site_index %}
+          {{ data.title }}
+      {% endbreadcrumb_for %}
+{% endblock %}
+
+
+{% block content %}
+{% render_breadcrumbs %}
+
+<style>
+  [data-toggle="collapse"] .fa:before {
+    content: "\f139";
+  }
+
+  [data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
+  }
+</style>
+
+<div class="px-4">
+  <div id="accordion" class="accordion">
+    <div class="card mb-0">
+      <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">  <a class="card-title">
+                  {{ data.title }}
+          <span class="text-right">
+            <i class="fa"></i>
+          </span>
+        </a>
+      </div>
+      <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th class="w-mid">Number</th>
+              <td class="process-no">{{ data.id }}</td>
+              <th class="w-mid">Created by</th>
+              <td>{% get_username_from_userid data.owner_id %}</td>
+            </tr>
+            <tr>
+              <th>Created on</th>
+              <td>{{ data.date }}</td>
+              <th>File</th>
+              <td>{{ data.file|getfilename }}</td>
+            </tr>
+            <tr>
+              <th class="w-mid">Reviewer</th>
+              <td class="process-no">{% get_username_from_userid data.reviewed_by_id %}</td>
+              <th class="w-mid">Department</th>
+              <td>{% get_department_name_id data.department_id %}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

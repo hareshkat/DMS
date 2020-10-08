@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% load django_tables2 django_bootstrap_breadcrumbs %}
+
+{% block title %}Department Employees{% endblock %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Departments" "departments" %}
+      {% breadcrumb_for departments %}
+        {{ department }}
+      {% endbreadcrumb_for %}
+      {% breadcrumb "Employees" "dept_emps" %}
+{% endblock %}
+
+{% block content %}
+{% render_breadcrumbs %}
+  <div class="px-4">
+    {% render_table data %}
+  </div>
+
+{% endblock %}

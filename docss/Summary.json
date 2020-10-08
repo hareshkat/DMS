@@ -1,0 +1,41 @@
+{
+  "UniqueID": 1,
+  "LMSEmployee": [
+    {
+      "EmployeeID": "55030827",
+      "UserID": "bridewin1.palakal",
+      "Summary": [
+        {
+          "Class_course_id": "130363_130371",
+          "Title": "Induction",
+          "Description": "This is Induction course",
+          "Thumbnail": "http://www.lms.com/image/JBP/induction.jpg"
+        },
+        {
+          "Class_course_id": "130363_130372",
+          "Title": "How to Mark Attendance",
+          "Description": "Marking Attendance through JBP and getting Approval",
+          "Thumbnail": "http://www.lms.com/image/JBP/attendance.jpg"
+        }
+      ]
+    },
+    {
+      "EmployeeID": "55031848",
+      "UserID": "Ravindra5.Yadav",
+      "Summary": [
+        {
+          "Class_course_id": "130363_130371",
+          "Title": "Induction",
+          "Description": "This is Induction course",
+          "Thumbnail": "http://www.lms.com/image/JBP/induction.jpg"
+        },
+        {
+          "Class_course_id": "130363_130372",
+          "Title": "How to Mark Attendance",
+          "Description": "Marking Attendance through JBP and getting Approval",
+          "Thumbnail": "http://www.lms.com/image/JBP/attendance.jpg"
+        }
+      ]
+    }
+  ]
+}

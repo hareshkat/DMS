@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+
+{% load i18n static admin_tags django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Inbox" "inbox" %}
+      {% breadcrumb_for site_index %}
+          {{ data.title }}
+      {% endbreadcrumb_for %}
+{% endblock %}
+
+
+{% block content %}
+{% render_breadcrumbs %}
+
+<div class="px-4">
+  <table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="w-mid">Document</th>
+      <td class="process-no">{{ data.title }}</td>
+      <th class="w-mid">Created by</th>
+      <td>{% get_username_from_userid data.owner_id %}</td>
+    </tr>
+    <tr>
+      <th>Created on</th>
+      <td>{{ data.date }}</td>
+      <th>File</th>
+      <td>{{ data.file|getfilename }}</td>
+    </tr>
+    <tr>
+      <th class="w-mid">Status</th>
+      <td class="process-no">{% get_status_name_id data.status_id %}</td>
+      <th class="w-mid">Department</th>
+      <td>{% get_department_name_id data.department_id %}</td>
+    </tr>
+    <tr>
+      <th class="w-mid">Reviewer</th>
+      <td class="process-no">{% get_username_from_userid data.reviewed_by_id %}</td>
+      <th class="w-mid">Approver</th>
+      <td>{% get_username_from_userid data.approved_by_id %}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+{{ xyz }}
+</div>
+
+{% endblock %}

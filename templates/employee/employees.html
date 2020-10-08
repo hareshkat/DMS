@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+
+{% load ajax_table django_bootstrap_breadcrumbs %}
+
+{% block title %}Employees{% endblock %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Users" "employees" %}
+{% endblock %}
+
+{% block content %}
+{% render_breadcrumbs %}
+
+  <div class="px-4">
+    {% ajax_table "employees_simple_table" "employees_list" %}
+  </div>
+
+{% endblock %}

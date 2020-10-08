@@ -1,0 +1,56 @@
+{% extends "account/base.html" %}
+
+{% load i18n static %}
+
+
+{% block content %}
+
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body" style="border-radius: 5px;">
+      <p class="login-box-msg">{% trans "Sign in Jio-DMS" %}</p>
+      {% if msg %}
+        <p style="color: red;">{{ msg }}</p>
+        {% endif %}
+      <form action="{% url 'account_login' %}" method="post">
+      	{% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required="required">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="{% trans 'Password' %}" name="password" required="required">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember" name="remember">
+              <label for="remember">
+                {% trans "Remember Me" %}
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-success btn-block">{% trans "Sign In" %}</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+{% endblock %}

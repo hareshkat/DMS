@@ -1,0 +1,79 @@
+{% extends "main/base.html" %}
+
+{% load i18n static admin_tags django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "My Documents" "my_documents" %}
+      {% breadcrumb_for my_doc_detail data.no %}
+          {{ data.title }}
+      {% endbreadcrumb_for %}
+
+{% endblock %}
+
+
+{% block content %}
+{% render_breadcrumbs %}
+
+<div class="px-4">
+  <table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="w-mid">Document</th>
+      <td class="process-no">{{ data.title }}</td>
+      <th class="w-mid">Created by</th>
+      <td>{% get_username_from_userid data.owner_id %}</td>
+    </tr>
+    <tr>
+      <th>Created on</th>
+      <td>{{ data.date }}</td>
+      <th>File</th>
+      <td>{{ data.file|getfilename }}</td>
+    </tr>
+    <tr>
+      <th class="w-mid">Status</th>
+      <td class="process-no">{% get_status_name_id data.status_id %}</td>
+      <th class="w-mid">Department</th>
+      <td>{% get_department_name_id data.department_id %}</td>
+    </tr>
+    <tr>
+      <th class="w-mid">Reviewer</th>
+      <td class="process-no">{% get_username_from_userid data.reviewed_by_id %}</td>
+      <th class="w-mid">Approver</th>
+      <td>{% get_username_from_userid data.approved_by_id %}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% if data.status_id is 1 or data.status_id is 5 %}
+<a class="btn btn-primary" href="{% url 'my_doc_change' doc_id=data.no %}">Edit</a>
+{% endif %}
+
+{% if data.status_id is 1 %}
+<a class="btn btn-info" href="{% url 'approve_document' document_id=data.id next_state_id=2 %}">Draft -> In progress</a>
+{% endif %}
+
+{% if data.status_id is 5 %}
+<a class="btn btn-warning" href="{% url 'approve_document' document_id=data.id next_state_id=2 %}">Re Open -> In progress</a>
+{% endif %}
+<br><br>
+
+
+{% if comments %}
+<div class="card">
+  <div class="card-title mx-2 my-2">
+    <h5>Reviewer's Comments:</h5>
+  </div>
+  <div class="card-boody mx-2 my-2">
+    {% for comment in comments %}
+    <p>{{ comment.comment }}</p>
+    <p style="font-family: monospace;">{% get_username_from_userid comment.comment_owner_id %}, {{ comment.date }}</p>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+
+{% load bootstrap4 django_bootstrap_breadcrumbs %}
+
+{% block title %}Document upload{% endblock %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb " Document upload" "upload_document" %}
+{% endblock %}
+
+{% block content %}
+{% render_breadcrumbs %}
+
+<div class="px-4">
+  <form  method="post" class="form group" id="DocUploadForm" reviewer-url="{% url 'load_reviewer' %}"enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+      {% endbuttons %}
+
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+       // $('#id_reviewed_by').data('options', $('#id_reviewed_by option').detach());
+       $("#id_reviewed_by").html('<option value="">---------</option>');
+    });
+
+    $("#id_department").change(function () {
+      var url = $("#DocUploadForm").attr("reviewer-url");
+      var deptId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'department': deptId
+        },
+        success: function (data) {
+          $("#id_reviewed_by").html(data);
+        }
+      });
+
+    });
+  </script>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for reviewer in reviewers %}
+<option value="{{ reviewer.id }}">{{ reviewer.username }}</option>
+{% endfor %}

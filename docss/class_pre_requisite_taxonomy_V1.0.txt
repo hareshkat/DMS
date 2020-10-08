@@ -1,0 +1,15 @@
+$data = array(
+  'bundles' => array(
+    'class_pre_requisite' => (object) array(
+      'vid' => '29',
+      'name' => 'Class Pre-requisite',
+      'machine_name' => 'class_pre_requisite',
+      'description' => 'Class  Pre-requisite',
+      'hierarchy' => '0',
+      'module' => 'taxonomy',
+      'weight' => '0',
+      'bc_entity_type' => 'taxonomy_term',
+    ),
+  ),
+  'instances' => array(),
+);

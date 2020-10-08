@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+
+{% load django_tables2 django_bootstrap_breadcrumbs %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block breadcrumbs %}
+      {{ block.super }}
+      {% breadcrumb "Inbox" "inbox" %}
+{% endblock %}
+
+{% block content %}
+{% render_breadcrumbs %}
+  <div class="px-4">
+    {% render_table data %}
+  </div>
+
+{% endblock %}
