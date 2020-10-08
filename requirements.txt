@@ -1,0 +1,6 @@
+Django
+bootstrap4
+django_tables2
+django_ajax_tables
+django_bootstrap_breadcrumbs
+django-river
